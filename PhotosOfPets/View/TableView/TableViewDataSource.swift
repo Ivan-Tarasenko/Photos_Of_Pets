@@ -15,6 +15,11 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
         tableViewModel.pets.count
     }
 
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let section = tableViewModel.pets[section]
+        return section
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }

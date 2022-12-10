@@ -26,8 +26,6 @@ final class ViewController<ContentView: MainContentViewProtocol>: UIViewControll
 
     override func loadView() {
         view = contentView as? UIView
-    }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
+        title = "Pents"
     }
 }
