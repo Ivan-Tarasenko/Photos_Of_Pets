@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TableViewDataSource: NSObject, UITableViewDataSource {
+final class TableViewDataSource: NSObject, UITableViewDataSource {
 
     private let tableViewModel: TableViewModelProtocol = TableViewModel()
 

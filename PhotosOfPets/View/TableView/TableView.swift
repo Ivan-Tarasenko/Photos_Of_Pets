@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TableView: UITableView {
+final class TableView: UITableView {
 
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: .grouped)

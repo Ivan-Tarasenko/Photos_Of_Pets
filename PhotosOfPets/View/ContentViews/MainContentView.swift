@@ -32,7 +32,6 @@ final class MainContentView: UIView, MainContentViewProtocol {
 
 extension MainContentView {
     func setTableView() {
-
         tableView.frame = UIScreen.main.bounds
         tableView.delegate = tableViewDelegate
         tableView.dataSource = tableViewDataSource
