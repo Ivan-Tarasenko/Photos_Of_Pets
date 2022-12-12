@@ -13,9 +13,11 @@ final class TableViewCell: UITableViewCell {
         return String(describing: self)
     }
 
+    var content = UIView()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(ContentViewCollection())
+
     }
 
     required init?(coder: NSCoder) {

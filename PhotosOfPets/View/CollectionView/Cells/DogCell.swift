@@ -1,5 +1,5 @@
 //
-//  CollectionViewCell.swift
+//  DogCell.swift
 //  PhotosOfPets
 //
 //  Created by Иван Тарасенко on 10.12.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CollectionViewCell: UICollectionViewCell {
+final class DogCell: UICollectionViewCell {
 
     static var identifier: String {
         return String(describing: self)

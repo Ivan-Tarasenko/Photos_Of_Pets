@@ -28,6 +28,15 @@ final class TableViewDataSource: NSObject, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath)
                 as? TableViewCell else { fatalError("don't cell") }
 
+        switch indexPath.section {
+        case 0:
+            cell.contentView.addSubview(DogView())
+        case 1:
+            cell.contentView.addSubview(CatView())
+        default:
+            break
+        }
+
                 return cell
     }
 }
