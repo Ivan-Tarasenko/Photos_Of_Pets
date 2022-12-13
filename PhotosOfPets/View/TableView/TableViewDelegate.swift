@@ -14,7 +14,7 @@ final class TableViewDelegate: NSObject, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let heightContent = DogView().frame.height
+        let heightContent = BaseContentView().frame.height
         return heightContent
     }
 

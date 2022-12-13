@@ -33,6 +33,10 @@ final class TableViewDataSource: NSObject, UITableViewDataSource {
             cell.contentView.addSubview(DogView())
         case 1:
             cell.contentView.addSubview(CatView())
+        case 2:
+            cell.contentView.addSubview(BirdView())
+        case 3:
+            cell.contentView.addSubview(ReptileView())
         default:
             break
         }

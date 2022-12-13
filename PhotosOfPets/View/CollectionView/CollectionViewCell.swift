@@ -1,5 +1,5 @@
 //
-//  DogCell.swift
+//  CollectionViewCell.swift
 //  PhotosOfPets
 //
 //  Created by Иван Тарасенко on 10.12.2022.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-final class DogCell: UICollectionViewCell {
+final class CollectionViewCell: UICollectionViewCell {
 
     static var identifier: String {
         return String(describing: self)
     }
 
     let imageView = UIImageView()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(imageView)
@@ -23,5 +23,9 @@ final class DogCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func set(image: PetImage) {
+        imageView.image = image.image
     }
 }
