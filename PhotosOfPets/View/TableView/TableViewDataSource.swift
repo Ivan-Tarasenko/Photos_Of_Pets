@@ -30,13 +30,13 @@ final class TableViewDataSource: NSObject, UITableViewDataSource {
 
         switch indexPath.section {
         case 0:
-            cell.contentView.addSubview(DogView())
+            cell.add(view: DogView())
         case 1:
-            cell.contentView.addSubview(CatView())
+            cell.add(view: CatView())
         case 2:
-            cell.contentView.addSubview(BirdView())
+            cell.add(view: BirdView())
         case 3:
-            cell.contentView.addSubview(ReptileView())
+            cell.add(view: ReptileView())
         default:
             break
         }

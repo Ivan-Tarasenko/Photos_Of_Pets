@@ -9,7 +9,8 @@ import UIKit
 
 final class CollectionView: UICollectionView {
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: CollectionViewLayout())
+        super.init(frame: frame, collectionViewLayout: layout)
+        autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
     
     required init?(coder: NSCoder) {

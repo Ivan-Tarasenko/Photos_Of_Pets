@@ -12,7 +12,7 @@ final class ReptileView: BaseContentView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setReptileView()
-        setCatCollectionView()
+        setReptileCollectionView()
     }
 
     required init?(coder: NSCoder) {
@@ -27,7 +27,7 @@ extension ReptileView {
 
     }
 
-    func setCatCollectionView() {
+    func setReptileCollectionView() {
         reptileCollectionView.frame = frame
         reptileCollectionView.delegate = collectionViewDelegate
         reptileCollectionView.dataSource = collectionViewDataSource

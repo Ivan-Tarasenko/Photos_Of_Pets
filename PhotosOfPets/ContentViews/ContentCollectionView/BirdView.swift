@@ -12,7 +12,7 @@ final class BirdView: BaseContentView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setBirdView()
-        setCatCollectionView()
+        setBirdCollectionView()
     }
 
     required init?(coder: NSCoder) {
@@ -27,7 +27,7 @@ extension BirdView {
 
     }
 
-    func setCatCollectionView() {
+    func setBirdCollectionView() {
         birdCollectionView.frame = frame
         birdCollectionView.delegate = collectionViewDelegate
         birdCollectionView.dataSource = collectionViewDataSource

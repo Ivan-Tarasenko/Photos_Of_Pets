@@ -17,6 +17,7 @@ final class CollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         addSubview(imageView)
         imageView.frame = frame
     }

@@ -24,17 +24,25 @@ final class MainContentView: UIView, MainContentViewProtocol {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    func setMainContentView() {
-        addSubview(tableView)
-    }
 }
 
 extension MainContentView {
+    
+    func setMainContentView() {
+        addSubview(tableView)
+    }
+
     func setTableView() {
         tableView.frame = UIScreen.main.bounds
         tableView.delegate = tableViewDelegate
         tableView.dataSource = tableViewDataSource
         tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier)
+
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: self.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
     }
 }

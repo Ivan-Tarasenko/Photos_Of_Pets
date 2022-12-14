@@ -8,5 +8,7 @@
 import UIKit
 
 final class CollectionViewDelegate: NSObject, UICollectionViewDelegate {
-    
+
+    private let model: CollectionViewModelProtocol = CollectionViewModel()
+
 }

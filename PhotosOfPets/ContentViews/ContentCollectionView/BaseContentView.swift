@@ -23,14 +23,26 @@ class BaseContentView: UIView, BaseContentViewProtocol {
     var reptileCollectionView: UICollectionView = CollectionView()
     weak var collectionViewDelegate: CollectionViewDelegate?
 
-    private let model: CollectionViewModelProtocol = CollectionViewModel()
+    let model: CollectionViewModelProtocol = CollectionViewModel()
     
     override init(frame: CGRect) {
-        super.init(frame: CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: 200)))
+        super.init(frame: CGRect(origin: .zero, size: CGSize(width: 350, height: 200)))
         collectionViewDataSource = CollectionViewDataSource(self)
+
+        if let layout = dogCollectionView.collectionViewLayout as? CollectionViewLayout {
+            layout.layoutDelegate = self
+        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+extension BaseContentView: LayoutDelegate {
+    func collectionView(_ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGSize {
+        print(model.dogs[indexPath.row].image.size)
+        return model.dogs[indexPath.row].image.size
+    }
+
 }

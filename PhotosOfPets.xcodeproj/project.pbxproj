@@ -104,6 +104,7 @@
 			children = (
 				1A51079B2940CD6E0027BC88 /* Model */,
 				1A5107A22940D05A0027BC88 /* View */,
+				1A5107A72940D4AD0027BC88 /* ContentViews */,
 				1A51079A2940CD680027BC88 /* Controller */,
 				1A510794293F7DA10027BC88 /* Resources */,
 				1A510793293F7D4E0027BC88 /* SupportingFiles */,
@@ -153,7 +154,6 @@
 			children = (
 				1A5107A82940D4C60027BC88 /* TableView */,
 				1A5107A92940D4D30027BC88 /* CollectionView */,
-				1A5107A72940D4AD0027BC88 /* ContentViews */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -24,7 +24,6 @@ extension DogView {
 
     func setDogView() {
         addSubview(dogCollectionView)
-
     }
 
     func setDogCollectionView() {

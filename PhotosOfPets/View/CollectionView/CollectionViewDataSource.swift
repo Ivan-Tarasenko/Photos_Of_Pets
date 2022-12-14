@@ -52,13 +52,10 @@ final class CollectionViewDataSource: NSObject, UICollectionViewDataSource, Data
         switch collectionView {
         case baseContentView?.dogCollectionView:
             cell.set(image: dogImage)
-
         case baseContentView?.catCollectionView:
             cell.set(image: catImage)
-
         case baseContentView?.birdCollectionView:
             cell.set(image: birdImage)
-
         case baseContentView?.reptileCollectionView:
             cell.set(image: reptileImage)
         default: break
@@ -66,4 +63,5 @@ final class CollectionViewDataSource: NSObject, UICollectionViewDataSource, Data
 
         return cell
     }
+
 }
