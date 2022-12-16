@@ -24,6 +24,11 @@ extension DogView {
 
     func setDogView() {
         addSubview(dogCollectionView)
+
+        if let layout = dogCollectionView.collectionViewLayout as? CollectionViewLayout {
+            layout.layoutDelegate = self
+        }
+
     }
 
     func setDogCollectionView() {
@@ -33,4 +38,16 @@ extension DogView {
         dogCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
 
     }
+}
+
+extension DogView: LayoutDelegate {
+
+    var contentHeight: CGFloat {
+        return dogCollectionView.bounds.height
+    }
+
+    func collectionView(_ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGSize {
+        return model.dogs[indexPath.row].image.size
+    }
+
 }

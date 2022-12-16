@@ -8,6 +8,9 @@
 import UIKit
 
 protocol LayoutDelegate: AnyObject {
+
+    var contentHeight: CGFloat {get}
+
     func collectionView( _ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGSize
 }
 
@@ -24,11 +27,15 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
       return collectionView.bounds.width
     }
 
+    override var collectionViewContentSize: CGSize {
+      return CGSize(width: contentWidth, height: contentHeight)
+    }
+
      override init() {
          super.init()
-//         setup()
-         print(layoutDelegate)
+         print(layoutDelegate?.contentHeight)
          self.scrollDirection = .horizontal
+         prepare()
      }
 
     required init?(coder: NSCoder) {
@@ -52,10 +59,6 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
          self.scrollDirection = .horizontal
 
      }
-
-    override var collectionViewContentSize: CGSize {
-      return CGSize(width: contentWidth, height: contentHeight)
-    }
 
     override func prepare() {
 
@@ -91,7 +94,7 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
         let cellWidth = CGFloat(300)
 
         // Создаем переменную, отвечающую за высоту ячейки, и присваиваем ей вычисляемое значение, как:
-        var cellHeight = CGFloat(200)//imageSize!.height * cellWidth/imageSize!.width
+        var cellHeight = imageSize!.height * cellWidth/imageSize!.width
 
         // Дополняем полученное ранее значение (сделано, чтобы не загромождать код выше математическими вычислениями).
         cellHeight = cellPadding * 2 + cellHeight

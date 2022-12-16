@@ -14,6 +14,7 @@ protocol DataSourceProtocol: AnyObject {
 final class CollectionViewDataSource: NSObject, UICollectionViewDataSource, DataSourceProtocol {
 
     private let model: CollectionViewModelProtocol = CollectionViewModel()
+    
     weak var baseContentView: BaseContentViewProtocol?
 
      init(_ baseContentView: BaseContentViewProtocol) {
@@ -21,6 +22,7 @@ final class CollectionViewDataSource: NSObject, UICollectionViewDataSource, Data
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
         switch collectionView {
         case baseContentView?.dogCollectionView:
             return model.dogs.count

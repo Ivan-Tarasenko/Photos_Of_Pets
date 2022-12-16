@@ -25,6 +25,10 @@ extension CatView {
     func setCatView() {
         addSubview(catCollectionView)
 
+        if let layout = catCollectionView.collectionViewLayout as? CollectionViewLayout {
+            layout.layoutDelegate = self
+        }
+
     }
 
     func setCatCollectionView() {
@@ -33,5 +37,16 @@ extension CatView {
         catCollectionView.dataSource = collectionViewDataSource
         catCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
 
+    }
+}
+
+extension CatView: LayoutDelegate {
+    
+    var contentHeight: CGFloat {
+        return catCollectionView.bounds.height
+    }
+
+    func collectionView(_ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGSize {
+        return model.cats[indexPath.row].image.size
     }
 }
