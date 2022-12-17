@@ -33,18 +33,11 @@ extension ReptileView {
 
     func setReptileCollectionView() {
         reptileCollectionView.frame = frame
-        reptileCollectionView.delegate = collectionViewDelegate
         reptileCollectionView.dataSource = collectionViewDataSource
-        reptileCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
-
     }
 }
 
 extension ReptileView: LayoutDelegate {
-    
-    var contentHeight: CGFloat {
-        return reptileCollectionView.bounds.height
-    }
 
     func collectionView(_ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGSize {
         return model.reptiles[indexPath.row].image.size

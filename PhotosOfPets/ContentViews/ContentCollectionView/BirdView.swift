@@ -33,18 +33,11 @@ extension BirdView {
 
     func setBirdCollectionView() {
         birdCollectionView.frame = frame
-        birdCollectionView.delegate = collectionViewDelegate
         birdCollectionView.dataSource = collectionViewDataSource
-        birdCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
-
     }
 }
 
 extension BirdView: LayoutDelegate {
-    
-    var contentHeight: CGFloat {
-        return birdCollectionView.bounds.height
-    }
 
     func collectionView(_ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGSize {
         return model.birds[indexPath.row].image.size

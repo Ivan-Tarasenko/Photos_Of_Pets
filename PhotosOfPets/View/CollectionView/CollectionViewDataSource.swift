@@ -12,8 +12,6 @@ protocol DataSourceProtocol: AnyObject {
 }
 
 final class CollectionViewDataSource: NSObject, UICollectionViewDataSource, DataSourceProtocol {
-
-    private let model: CollectionViewModelProtocol = CollectionViewModel()
     
     weak var baseContentView: BaseContentViewProtocol?
 
@@ -23,18 +21,20 @@ final class CollectionViewDataSource: NSObject, UICollectionViewDataSource, Data
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
+        guard let content = baseContentView else { fatalError("baseContent nil")}
+
         switch collectionView {
-        case baseContentView?.dogCollectionView:
-            return model.dogs.count
+        case content.dogCollectionView:
+            return content.model.dogs.count
 
-        case baseContentView?.catCollectionView:
-            return model.cats.count
+        case content.catCollectionView:
+            return content.model.cats.count
 
-        case baseContentView?.birdCollectionView:
-            return model.birds.count
+        case content.birdCollectionView:
+            return content.model.birds.count
 
-        case baseContentView?.reptileCollectionView:
-            return model.reptiles.count
+        case content.reptileCollectionView:
+            return content.model.reptiles.count
         default: break
         }
 
@@ -45,23 +45,24 @@ final class CollectionViewDataSource: NSObject, UICollectionViewDataSource, Data
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath)
                 as? CollectionViewCell else { fatalError("don't collectionCell") }
+        guard let content = baseContentView else { fatalError("baseContent nil")}
 
-        let dogImage = model.dogs[indexPath.row]
-        let catImage = model.cats[indexPath.row]
-        let birdImage = model.birds[indexPath.row]
-        let reptileImage = model.reptiles[indexPath.row]
+        let dogImage = content.model.dogs[indexPath.row]
+        let catImage = content.model.cats[indexPath.row]
+        let birdImage = content.model.birds[indexPath.row]
+        let reptileImage = content.model.reptiles[indexPath.row]
 
-        switch collectionView {
-        case baseContentView?.dogCollectionView:
-            cell.set(image: dogImage)
-        case baseContentView?.catCollectionView:
-            cell.set(image: catImage)
-        case baseContentView?.birdCollectionView:
-            cell.set(image: birdImage)
-        case baseContentView?.reptileCollectionView:
-            cell.set(image: reptileImage)
-        default: break
-        }
+//        switch collectionView {
+//        case baseContentView?.dogCollectionView:
+//            cell.set(image: dogImage)
+//        case baseContentView?.catCollectionView:
+//            cell.set(image: catImage)
+//        case baseContentView?.birdCollectionView:
+//            cell.set(image: birdImage)
+//        case baseContentView?.reptileCollectionView:
+//            cell.set(image: reptileImage)
+//        default: break
+//        }
 
         return cell
     }

@@ -12,19 +12,18 @@ protocol BaseContentViewProtocol: AnyObject {
     var catCollectionView: UICollectionView {get set}
     var birdCollectionView: UICollectionView {get set}
     var reptileCollectionView: UICollectionView {get set}
+    var model: CollectionViewModelProtocol {get set}
 }
 
 class BaseContentView: UIView, BaseContentViewProtocol {
-
 
     var collectionViewDataSource: UICollectionViewDataSource!
     var dogCollectionView: UICollectionView = CollectionView()
     var catCollectionView: UICollectionView = CollectionView()
     var birdCollectionView: UICollectionView = CollectionView()
     var reptileCollectionView: UICollectionView = CollectionView()
-    weak var collectionViewDelegate: CollectionViewDelegate?
 
-    let model: CollectionViewModelProtocol = CollectionViewModel()
+    var model: CollectionViewModelProtocol = CollectionViewModel()
     
     override init(frame: CGRect) {
         super.init(frame: CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: 200)))

@@ -9,8 +9,6 @@ import UIKit
 
 protocol LayoutDelegate: AnyObject {
 
-    var contentHeight: CGFloat {get}
-
     func collectionView( _ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGSize
 }
 
@@ -21,10 +19,11 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
     private let numberOfLines = 1
     private let cellPadding: CGFloat = 2
     private var cache: [UICollectionViewLayoutAttributes] = []
-    private var contentHeight: CGFloat = 0
-    private var contentWidth: CGFloat {
-      guard let collectionView = collectionView else { return 0 }
-      return collectionView.bounds.width
+    private var contentWidth: CGFloat = 0
+
+    private var contentHeight: CGFloat {
+        guard let collectionView = collectionView else { return 0 }
+        return collectionView.bounds.height
     }
 
     override var collectionViewContentSize: CGSize {
@@ -33,9 +32,9 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
 
      override init() {
          super.init()
-         print(layoutDelegate?.contentHeight)
-         self.scrollDirection = .horizontal
+//         setup()
          prepare()
+         scrollDirection = .horizontal
      }
 
     required init?(coder: NSCoder) {
@@ -50,11 +49,11 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
 
          self.itemSize = CGSize(width: 200, height: 200)
 
-//         self.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+         self.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 
-//         self.minimumInteritemSpacing = 10
+         self.minimumInteritemSpacing = 10
 
-//         self.minimumLineSpacing = 10
+         self.minimumLineSpacing = 10
 
          self.scrollDirection = .horizontal
 
@@ -62,7 +61,6 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
 
     override func prepare() {
 
-      // Проверяем хранилище на nil
       guard cache.isEmpty, let collectionView = collectionView else { return }
 
       // Устанавливаем ширину колонки под изображения
@@ -91,10 +89,10 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
         let imageSize = layoutDelegate?.collectionView(collectionView, heightForImageAtIndexPath: indexPath)
 
         // Создаем константу с шириной ячейки и присваиваем ширину колонки, в которой будет располагаться ячейка (то есть за основу берем ширину колонки).
-        let cellWidth = CGFloat(300)
+          let cellWidth = imageSize!.width
 
         // Создаем переменную, отвечающую за высоту ячейки, и присваиваем ей вычисляемое значение, как:
-        var cellHeight = imageSize!.height * cellWidth/imageSize!.width
+        var cellHeight = contentHeight
 
         // Дополняем полученное ранее значение (сделано, чтобы не загромождать код выше математическими вычислениями).
         cellHeight = cellPadding * 2 + cellHeight
@@ -117,7 +115,7 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
         cache.append(attributes)
 
         // Сравнение величин между собой, устанавливается наибольшее из двух (если contentHeight будет больше frame.maxY, то значение будет взято из высоты контента, в противном случае из фрейма)
-        contentHeight = max(contentHeight, frame.maxY)
+//        contentHeight = max(contentHeight, frame.maxY)
 
         // Выравниваем все изображения по колонкам, учитывая их размеры и отступы
         yOffset[column] = yOffset[column] + cellHeight
@@ -127,7 +125,7 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
       }
     }
 
-    //Переопределяем метод. Представление коллекции вызывает его после prepare (), чтобы отобразить те элементы, которые будут выводиться в конкретной ячейке.
+//    Переопределяем метод. Представление коллекции вызывает его после prepare (), чтобы отобразить те элементы, которые будут выводиться в конкретной ячейке.
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
       var visibleLayoutAttributes = [UICollectionViewLayoutAttributes]()
 

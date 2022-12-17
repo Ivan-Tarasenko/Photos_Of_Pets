@@ -32,22 +32,14 @@ extension DogView {
     }
 
     func setDogCollectionView() {
-        dogCollectionView.frame = frame
-        dogCollectionView.delegate = collectionViewDelegate
+        dogCollectionView.frame = bounds
         dogCollectionView.dataSource = collectionViewDataSource
-        dogCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
-
     }
 }
 
 extension DogView: LayoutDelegate {
 
-    var contentHeight: CGFloat {
-        return dogCollectionView.bounds.height
-    }
-
     func collectionView(_ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGSize {
         return model.dogs[indexPath.row].image.size
     }
-
 }

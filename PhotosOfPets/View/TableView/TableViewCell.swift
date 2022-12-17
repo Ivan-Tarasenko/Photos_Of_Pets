@@ -28,6 +28,7 @@ final class TableViewCell: UITableViewCell {
         addSubview(view)
 
         view.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
             view.topAnchor.constraint(equalTo: self.topAnchor),
             view.leadingAnchor.constraint(equalTo: self.leadingAnchor),
