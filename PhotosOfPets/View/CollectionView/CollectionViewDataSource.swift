@@ -52,17 +52,17 @@ final class CollectionViewDataSource: NSObject, UICollectionViewDataSource, Data
         let birdImage = content.model.birds[indexPath.row]
         let reptileImage = content.model.reptiles[indexPath.row]
 
-//        switch collectionView {
-//        case baseContentView?.dogCollectionView:
-//            cell.set(image: dogImage)
-//        case baseContentView?.catCollectionView:
-//            cell.set(image: catImage)
-//        case baseContentView?.birdCollectionView:
-//            cell.set(image: birdImage)
-//        case baseContentView?.reptileCollectionView:
-//            cell.set(image: reptileImage)
-//        default: break
-//        }
+        switch collectionView {
+        case baseContentView?.dogCollectionView:
+            cell.set(image: dogImage)
+        case baseContentView?.catCollectionView:
+            cell.set(image: catImage)
+        case baseContentView?.birdCollectionView:
+            cell.set(image: birdImage)
+        case baseContentView?.reptileCollectionView:
+            cell.set(image: reptileImage)
+        default: break
+        }
 
         return cell
     }

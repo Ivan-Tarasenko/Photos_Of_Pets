@@ -17,7 +17,7 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
     weak var layoutDelegate: LayoutDelegate?
 
     private let numberOfLines = 1
-    private let cellPadding: CGFloat = 2
+    private let cellPadding: CGFloat = 20
     private var cache: [UICollectionViewLayoutAttributes] = []
     private var contentWidth: CGFloat = 0
 
@@ -29,35 +29,6 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
     override var collectionViewContentSize: CGSize {
       return CGSize(width: contentWidth, height: contentHeight)
     }
-
-     override init() {
-         super.init()
-//         setup()
-         prepare()
-         scrollDirection = .horizontal
-     }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-     func setup() {
-
-         // setting up some inherited values
-
-//         let width = UIScreen.main.bounds.width / 2
-
-         self.itemSize = CGSize(width: 200, height: 200)
-
-         self.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-
-         self.minimumInteritemSpacing = 10
-
-         self.minimumLineSpacing = 10
-
-         self.scrollDirection = .horizontal
-
-     }
 
     override func prepare() {
 
@@ -89,13 +60,13 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
         let imageSize = layoutDelegate?.collectionView(collectionView, heightForImageAtIndexPath: indexPath)
 
         // Создаем константу с шириной ячейки и присваиваем ширину колонки, в которой будет располагаться ячейка (то есть за основу берем ширину колонки).
-          let cellWidth = imageSize!.width
 
         // Создаем переменную, отвечающую за высоту ячейки, и присваиваем ей вычисляемое значение, как:
         var cellHeight = contentHeight
 
+          var cellWidth = imageSize!.width// * cellHeight/imageSize!.height
         // Дополняем полученное ранее значение (сделано, чтобы не загромождать код выше математическими вычислениями).
-        cellHeight = cellPadding * 2 + cellHeight
+          cellWidth = cellPadding * 2 + cellWidth
 
         // Создаем константу, которая будет хранить все вычисленные значения.
         let frame = CGRect(x: xOffset[column],
@@ -110,18 +81,22 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
 
         // Добавляем во фрейм дополнительные отступы между ячейками.
         attributes.frame = insetFrame
-          numberOfLines
+//          numberOfLines
         // Собираем полученные при помощи вычислений данные в хранилище.
         cache.append(attributes)
 
         // Сравнение величин между собой, устанавливается наибольшее из двух (если contentHeight будет больше frame.maxY, то значение будет взято из высоты контента, в противном случае из фрейма)
-//        contentHeight = max(contentHeight, frame.maxY)
+        contentWidth = max(contentWidth, frame.maxX)
 
         // Выравниваем все изображения по колонкам, учитывая их размеры и отступы
-        yOffset[column] = yOffset[column] + cellHeight
+        xOffset[column] = xOffset[column] + cellWidth
+
 
         // Распределяем контент по колонкам, что в первую, что во вторую.
         column = column < (numberOfLines - 1) ? (column + 1) : 0
+
+          print(contentWidth)
+//          print(contentHeight)
       }
     }
 
