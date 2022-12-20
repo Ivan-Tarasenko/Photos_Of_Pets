@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TableViewDataSource: NSObject, UITableViewDataSource {
+final class TableViewDataSource: NSObject, UITableViewDataSource {
 
     private let tableViewModel: TableViewModelProtocol = TableViewModel()
 
@@ -27,6 +27,19 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath)
                 as? TableViewCell else { fatalError("don't cell") }
+
+        switch indexPath.section {
+        case 0:
+            cell.add(view: DogView())
+        case 1:
+            cell.add(view: CatView())
+        case 2:
+            cell.add(view: BirdView())
+        case 3:
+            cell.add(view: ReptileView())
+        default:
+            break
+        }
 
                 return cell
     }

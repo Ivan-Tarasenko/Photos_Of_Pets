@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class NavigationController: UINavigationController, UIViewControllerTransitioningDelegate {
+final class NavigationController: UINavigationController, UIViewControllerTransitioningDelegate {
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .darkContent

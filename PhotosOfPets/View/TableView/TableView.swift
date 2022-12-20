@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TableView: UITableView {
+final class TableView: UITableView {
 
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: .grouped)
@@ -19,8 +19,8 @@ class TableView: UITableView {
     }
 
     private func setupTableView() {
-        separatorColor = .darkGray
-        backgroundColor = .white
+        separatorColor = .clear
+        backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1)
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

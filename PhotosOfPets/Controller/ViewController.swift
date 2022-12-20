@@ -7,10 +7,6 @@
 
 import UIKit
 
-extension ViewController where ContentView == MainContentView {
-
-}
-
 final class ViewController<ContentView: MainContentViewProtocol>: UIViewController {
 
     private let contentView: ContentView
@@ -27,5 +23,14 @@ final class ViewController<ContentView: MainContentViewProtocol>: UIViewControll
     override func loadView() {
         view = contentView as? UIView
         title = "Pents"
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
     }
 }
