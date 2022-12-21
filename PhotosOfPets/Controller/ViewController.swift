@@ -24,13 +24,4 @@ final class ViewController<ContentView: MainContentViewProtocol>: UIViewControll
         view = contentView as? UIView
         title = "Pents"
     }
-
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-    }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-    }
 }

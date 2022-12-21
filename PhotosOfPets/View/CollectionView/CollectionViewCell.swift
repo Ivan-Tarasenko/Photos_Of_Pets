@@ -17,10 +17,9 @@ final class CollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        addSubview(imageView)
+        backgroundColor = .systemBlue
         imageView.frame = self.bounds
-      
+        addSubview(imageView)
     }
     
     required init?(coder: NSCoder) {
