@@ -12,7 +12,7 @@ protocol BaseContentViewProtocol: AnyObject {
     var catCollectionView: UICollectionView {get set}
     var birdCollectionView: UICollectionView {get set}
     var reptileCollectionView: UICollectionView {get set}
-    var model: CollectionViewModelProtocol {get set}
+    var model: CollectionViewModelProtocol {get}
 }
 
 class BaseContentView: UIView, BaseContentViewProtocol {
@@ -33,5 +33,22 @@ class BaseContentView: UIView, BaseContentViewProtocol {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension BaseContentView: LayoutDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGSize {
+
+        switch collectionView {
+        case dogCollectionView:
+            return model.dogs[indexPath.row].image.size
+        case catCollectionView:
+            return model.cats[indexPath.row].image.size
+        case birdCollectionView:
+            return model.birds[indexPath.row].image.size
+        default:
+            return model.reptiles[indexPath.row].image.size
+        }
     }
 }

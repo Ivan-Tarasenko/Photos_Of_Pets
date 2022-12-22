@@ -9,12 +9,19 @@ import UIKit
 
 protocol MainContentViewProtocol {}
 
-final class MainContentView: UIView, MainContentViewProtocol {
+protocol MainContentViewDelegate: AnyObject {
+    var model: TableViewModelProtocol {get}
+}
 
+final class MainContentView: UIView, MainContentViewProtocol, MainContentViewDelegate {
+
+    var model: TableViewModelProtocol = TableViewModel()
+    var tableViewDataSource: UITableViewDataSource!
     private let tableView = TableView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        tableViewDataSource = TableViewDataSource(self)
         setMainContentView()
         setTableView()
     }
@@ -24,14 +31,14 @@ final class MainContentView: UIView, MainContentViewProtocol {
     }
 }
 
-extension MainContentView {
+private extension MainContentView {
     
     func setMainContentView() {
         addSubview(tableView)
     }
 
     func setTableView() {
-        tableView.frame = UIScreen.main.bounds
+        tableView.dataSource = tableViewDataSource
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.topAnchor),

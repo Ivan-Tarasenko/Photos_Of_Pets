@@ -20,7 +20,8 @@ final class BirdView: BaseContentView {
     }
 }
 
-extension BirdView {
+// MARK: - Private extension
+private extension BirdView {
 
     func setBirdView() {
         addSubview(birdCollectionView)
@@ -34,12 +35,5 @@ extension BirdView {
     func setBirdCollectionView() {
         birdCollectionView.frame = frame
         birdCollectionView.dataSource = collectionViewDataSource
-    }
-}
-
-extension BirdView: LayoutDelegate {
-
-    func collectionView(_ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGSize {
-        return model.birds[indexPath.row].image.size
     }
 }

@@ -11,7 +11,7 @@ protocol TableViewModelProtocol {
     var pets: [String] {get}
 }
 
-class TableViewModel: TableViewModelProtocol {
+final class TableViewModel: TableViewModelProtocol {
 
-    var pets = ["Dogs", "Cats", "Birds", "Reptiles"]
+    let pets = ["Dogs", "Cats", "Birds", "Reptiles"]
 }

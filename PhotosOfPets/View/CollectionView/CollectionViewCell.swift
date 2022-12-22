@@ -17,9 +17,8 @@ final class CollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemBlue
-        imageView.frame = self.bounds
         addSubview(imageView)
+        makeConstraint()
     }
     
     required init?(coder: NSCoder) {
@@ -28,5 +27,16 @@ final class CollectionViewCell: UICollectionViewCell {
 
     func set(image: PetImage) {
         imageView.image = image.image
+    }
+
+    private func makeConstraint() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: self.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
     }
 }

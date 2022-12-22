@@ -22,6 +22,6 @@ final class ViewController<ContentView: MainContentViewProtocol>: UIViewControll
 
     override func loadView() {
         view = contentView as? UIView
-        title = "Pents"
+        title = "Pets"
     }
 }
