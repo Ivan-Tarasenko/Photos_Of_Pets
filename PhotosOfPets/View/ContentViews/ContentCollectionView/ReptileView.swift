@@ -20,7 +20,8 @@ final class ReptileView: BaseContentView {
     }
 }
 
-extension ReptileView {
+// MARK: - Private extension
+private extension ReptileView {
 
     func setReptileView() {
         addSubview(reptileCollectionView)
@@ -34,12 +35,5 @@ extension ReptileView {
     func setReptileCollectionView() {
         reptileCollectionView.frame = frame
         reptileCollectionView.dataSource = collectionViewDataSource
-    }
-}
-
-extension ReptileView: LayoutDelegate {
-
-    func collectionView(_ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGSize {
-        return model.reptiles[indexPath.row].image.size
     }
 }

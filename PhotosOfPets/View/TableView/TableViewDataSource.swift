@@ -7,16 +7,26 @@
 
 import UIKit
 
-final class TableViewDataSource: NSObject, UITableViewDataSource {
+protocol TableViewDataSourceDelegate: AnyObject {
+    init(_ mainContentView: MainContentViewDelegate)
+}
 
-    private let tableViewModel: TableViewModelProtocol = TableViewModel()
+final class TableViewDataSource: NSObject, UITableViewDataSource, TableViewDataSourceDelegate {
+
+    weak var mainContentView: MainContentViewDelegate?
+
+    init(_ mainContentView: MainContentViewDelegate) {
+        self.mainContentView = mainContentView
+    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        tableViewModel.pets.count
+        guard let content = mainContentView else { fatalError("no main content") }
+        return content.model.pets.count
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let section = tableViewModel.pets[section]
+        guard let content = mainContentView else { fatalError("no main content") }
+        let section = content.model.pets[section]
         return section
     }
 
@@ -41,6 +51,6 @@ final class TableViewDataSource: NSObject, UITableViewDataSource {
             break
         }
 
-                return cell
+        return cell
     }
 }

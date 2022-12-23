@@ -20,7 +20,8 @@ final class CatView: BaseContentView {
     }
 }
 
-extension CatView {
+// MARK: - Private extension
+private extension CatView {
 
     func setCatView() {
         addSubview(catCollectionView)
@@ -34,12 +35,5 @@ extension CatView {
     func setCatCollectionView() {
         catCollectionView.frame = frame
         catCollectionView.dataSource = collectionViewDataSource
-    }
-}
-
-extension CatView: LayoutDelegate {
-
-    func collectionView(_ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGSize {
-        return model.cats[indexPath.row].image.size
     }
 }

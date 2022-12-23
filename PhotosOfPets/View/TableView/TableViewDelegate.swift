@@ -20,7 +20,7 @@ final class TableViewDelegate: NSObject, UITableViewDelegate {
 
     // Метод позволяет работать с секцией
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-    let header = view as? UITableViewHeaderFooterView
+        let header = view as? UITableViewHeaderFooterView
 
         header?.textLabel?.textColor = .darkGray
         header?.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 15)

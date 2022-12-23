@@ -20,7 +20,8 @@ final class DogView: BaseContentView {
     }
 }
 
-extension DogView {
+// MARK: - Private extension
+private extension DogView {
 
     func setDogView() {
         addSubview(dogCollectionView)
@@ -34,12 +35,5 @@ extension DogView {
     func setDogCollectionView() {
         dogCollectionView.frame = bounds
         dogCollectionView.dataSource = collectionViewDataSource
-    }
-}
-
-extension DogView: LayoutDelegate {
-
-    func collectionView(_ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGSize {
-        return model.dogs[indexPath.row].image.size
     }
 }
